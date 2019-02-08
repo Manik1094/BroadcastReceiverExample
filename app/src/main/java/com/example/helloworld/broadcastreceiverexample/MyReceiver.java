@@ -8,7 +8,6 @@ import android.widget.Toast;
 
 public class MyReceiver extends BroadcastReceiver {
 
-    MediaPlayer mediaPlayer;
 
    public MyReceiver(){
         super();
@@ -18,7 +17,6 @@ public class MyReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
         String intentAction = intent.getAction();
-        mediaPlayer = MediaPlayer.create(context,R.raw.sample );
         if (intentAction != null) {
             String toastMessage = "unknown intent action";
             switch (intentAction){
@@ -29,26 +27,37 @@ public class MyReceiver extends BroadcastReceiver {
                     toastMessage = "Power disconnected!";
                     break;
 
-                case Intent.ACTION_CALL:
-                    toastMessage = "Incoming call";
 
                 case Intent.ACTION_HEADSET_PLUG :
                     int state = intent.getIntExtra("state", -1);
                     switch (state) {
                         case 0:
-                            mediaPlayer.stop();
+                            toastMessage = "Headset unplugged";
+
                             break;
                         case 1:
-                            mediaPlayer.seekTo(30000);
-                            mediaPlayer.start();
+                            toastMessage = "Headset plugged";
 
                             break;
                     }
+                    break;
+                case Intent.ACTION_BATTERY_LOW :
+                    toastMessage = "Battery Low ! Please Connect charger";
+                    break;
+
+                case Intent.ACTION_BATTERY_OKAY :
+                    toastMessage = "Battery is okay";
+                    break;
 
 
-
-
-
+                case Intent.ACTION_AIRPLANE_MODE_CHANGED:
+                    boolean status = intent.getBooleanExtra("state" , true);
+                    if(status){
+                        toastMessage = "Airplane Mode turned on";
+                    }else {
+                        toastMessage = "Airplane Mode turned off";
+                    }
+                    break;
 
 
             }

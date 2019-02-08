@@ -23,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
         filter.addAction(Intent.ACTION_POWER_DISCONNECTED);
         filter.addAction(Intent.ACTION_POWER_CONNECTED);
         filter.addAction(Intent.ACTION_HEADSET_PLUG);
+        filter.addAction(Intent.ACTION_BATTERY_LOW);
+        filter.addAction(Intent.ACTION_BATTERY_OKAY);
+        filter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
 
 
 
