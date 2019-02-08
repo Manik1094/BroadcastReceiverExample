@@ -15,11 +15,12 @@ public class MainActivity extends AppCompatActivity {
     MyReceiver myReceiver = new MyReceiver();
     IntentFilter filter = new IntentFilter();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        button = findViewById(R.id.button);
+
         filter.addAction(Intent.ACTION_POWER_DISCONNECTED);
         filter.addAction(Intent.ACTION_POWER_CONNECTED);
         filter.addAction(Intent.ACTION_HEADSET_PLUG);
@@ -27,9 +28,6 @@ public class MainActivity extends AppCompatActivity {
         filter.addAction(Intent.ACTION_BATTERY_OKAY);
         filter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
 
-
-
-        button = findViewById(R.id.button);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,9 +38,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
